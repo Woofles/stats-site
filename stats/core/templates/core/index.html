@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+<title>Stats</title>
+<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}" />
+</head>
+<body>
+<div class='search'>
+    <form action="{% url 'index' %}" method='post' >{%csrf_token%}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field }}
+        </div>
+    {% endfor %}
+    <input type='submit' style='display:none;' >
+    </form>
+</div>
+</body>
+</html>

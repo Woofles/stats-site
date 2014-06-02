@@ -1,1 +1,4 @@
 db.cnf
+*.sublime-workspace
+*.sublime-project
+*.pyc
