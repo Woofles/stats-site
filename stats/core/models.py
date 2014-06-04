@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 class Player(models.Model):
-	playerid = models.AutoField(primary_key=True)
-	mlbid = models.IntegerField()
-	retroid = models.CharField()
+	player_id = models.AutoField(primary_key=True)
+	mlb_id = models.IntegerField()
+	retro_id = models.CharField(max_length=8)
 	first_name = models.CharField(max_length=30)
 	last_name = models.CharField(max_length=30)
 	dob = models.DateField()
