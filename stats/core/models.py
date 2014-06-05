@@ -7,7 +7,7 @@ class Player(models.Model):
 	retro_id = models.CharField(max_length=8)
 	first_name = models.CharField(max_length=30)
 	last_name = models.CharField(max_length=30)
-	dob = models.DateField()
+	debut = models.DateField()
 
 
 #  class Batter(models.Model):
