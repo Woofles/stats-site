@@ -2,12 +2,40 @@ from django.db import models
 
 # Create your models here.
 class Player(models.Model):
+
 	player_id = models.AutoField(primary_key=True)
-	mlb_id = models.IntegerField()
-	retro_id = models.CharField(max_length=8)
-	first_name = models.CharField(max_length=30)
+
 	last_name = models.CharField(max_length=30)
-	debut = models.DateField()
+	first_name = models.CharField(max_length=30)
+	
+	given_name = models.CharField(max_length=60)
+
+	weight = models.IntegerField(max_value=3000)
+	height = models.IntegerField(max_value=300)
+
+	bats = models.CharField(max_length=3)
+	throws = models.CharField(max_length=3)
+	debut_game = models.DateField(null=True)
+	final_game = models.DateField(null=True)
+
+	mlb_id = models.CharField(max_length=12)
+	retro_id = models.CharField(max_length=12)
+	bbref_id = models.CharField(max_length=12)
+	lahman_id = models.CharField(max_length=12)
+
+	birth_year = models.IntegerField(max_value=9999)
+	birth_month = models.IntegerField(max_value=12)
+	birth_day = models.IntegerField(max_value=31)
+	birth_country = models.CharField(max_length=30)
+	birth_state = models.CharField(max_length=30)
+	birth_city = models.CharField(max_length=30)
+
+	death_year = models.IntegerField(max_value=9999, null=True)
+	death_month = models.IntegerField(max_value=12, null=True)
+	death_day = models.IntegerField(max_value=31, null=True)
+	death_country = models.CharField(max_length=30, null=True)
+	death_state = models.CharField(max_length=30, null=True)
+	death_city = models.CharField(max_length=30, null=True)
 
 
 #  class Batter(models.Model):
