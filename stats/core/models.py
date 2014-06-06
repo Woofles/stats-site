@@ -51,6 +51,11 @@ class BatterSeason(models.Model):
 	doubles = models.IntegerField()
 	triples = models.IntegerField()
 	home_runs = models.IntegerField()
+
+	def _get_singles(self):
+    	return '%d - %d - %d - %d' % (self.hits, self.double, self.triple, self.home_runs)
+	singles = property(_get_singles)
+	
 	rbis = models.IntegerField()
 	stolen_bases = models.IntegerField()
 	# stolen_bases_2 = models.IntegerField()
@@ -81,8 +86,14 @@ class BatterSeason(models.Model):
 	strike_outs = models.IntegerField()
 	battingavg = models.DecimalField(max_digits=4, decimal_places=3)
 	obp = models.DecimalField(max_digits=4, decimal_places=3)
-	slg = models.DecimalField(max_digits=4, decimal_places=3)
-	ops = models.DecimalField(max_digits=4, decimal_places=3)
+
+	def _get_slg(self):
+		return '(%d + 2*%d + 3*%d + 4*%d)/%d' % (self.singles, self.doubles, self.triples, self.home_runs, self.at_bats)
+    slg = property(_get_slg)
+	
+	def _get_ops(self):
+    	return '%d + %d' % (self.obp, self.slg)
+	ops = property(_get_ops)
 	# ops_plus = models.IntegerField()
 	# total_bases = models.IntegerField()
 	# gdp = models.IntegerField()
@@ -130,3 +141,4 @@ class BatterSeason(models.Model):
 # class Game(models.Model):
 # 	gameid = models.AutoField(primary_key=True)
 # 	home =  models.CharField(max_length=30)
+
