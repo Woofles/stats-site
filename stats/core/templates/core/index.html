@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class='search'>
-    <form action="{% url 'index' %}" method='post' >{%csrf_token%}
+    <form action="{% url 'index' %}" method='post' autocomplete="off" >{%csrf_token%}
     {% for field in form %}
         <div class="fieldWrapper">
             {{ field.errors }}
@@ -17,6 +17,11 @@
     {% endfor %}
     <input type='submit' style='display:none;' >
     </form>
+</div>
+<div class='results'>
+{% if player.birth_city %}
+{{ player.birth_city }}, {{player.birth_state}} {{player.birth_country}}
+{% endif %}
 </div>
 </body>
 </html>
