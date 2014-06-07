@@ -142,7 +142,7 @@ class Team(models.Model):
 	loc_city = models.CharField(max_length=20)
 	loc_state = models.CharField(max_length=20)
 
-class TeamSeason
+class TeamSeason(models.Model):
 	year = models.IntegerField()
 	games = models.IntegerField()
 	wins = models.IntegerField()
