@@ -142,6 +142,56 @@ class Team(models.Model):
 	loc_city = models.CharField(max_length=20)
 	loc_state = models.CharField(max_length=20)
 
+class TeamSeason
+	year = models.IntegerField()
+	games = models.IntegerField()
+	wins = models.IntegerField()
+	losses = models.IntegerField()
+
+	rank = models.IntegerField()
+	div_win = models.BooleanField()
+	wc_win = models.BooleanField()
+	lg_win = models.BooleanField()
+	ws_win = models.BooleanField()
+
+	runs = models.IntegerField()
+	at_bats = models.IntegerField()
+	hits = models.IntegerField()
+	doubles = models.IntegerField()
+	triples = models.IntegerField()
+	home_runs = models.IntegerField()
+	walks = models.IntegerField()
+	strike_outs = models.IntegerField()
+	stolen_bases = models.IntegerField()
+	caught_stealing = models.IntegerField()
+	hbp = models.IntegerField()
+	sac_flys = models.IntegerField()
+	ra = models.IntegerField()
+	
+	earned_runs = models.IntegerField()
+	era = models.DecimalField()
+	complete_games = models.IntegerField()
+	shutouts = models.IntegerField()
+	saves = models.IntegerField()
+	outs_pitched = models.IntegerField()
+	hits_allowed = models.IntegerField()
+	home_runs_allowed = models.IntegerField()
+	walks_allowed = models.IntegerField()
+	strike_out_pitching = models.IntegerField()
+
+	errors = models.IntegerField()
+	double_plays = models.IntegerField()
+	fielding_percentage = models.DecimalField()
+
+	park = models.CharField(max_length=40)
+	attendance = models.IntegerField()
+	bpf = models.IntegerField()
+	ppf = models.IntegerField()
+
+
+
+
+
 # class Pitcher(models.Model):
 # 	pitcherid = models.AutoField(primary_key=True)
 # 	pitcher = models.ForeignKey(Player)
