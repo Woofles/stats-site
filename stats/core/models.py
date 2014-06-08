@@ -21,7 +21,7 @@ class Player(models.Model):
 	mlb_id = models.CharField(max_length=12)
 	retro_id = models.CharField(max_length=12)
 	bbref_id = models.CharField(max_length=12)
-	lahman_id = models.CharField(max_length=12)
+	lahman_id = models.CharField(max_length=12, unique=True)
 
 	birth_year = models.IntegerField()
 	birth_month = models.IntegerField()
@@ -40,9 +40,9 @@ class Player(models.Model):
 
 class BatterSeason(models.Model):
 	batter_season_id = models.AutoField(primary_key=True)
-	player_id = models.ForeignKey(Player)
+	player_id = models.ForeignKey(Player, db_column='lahman_id')
 	season = models.IntegerField()
-	team = models.CharField(max_length=30, null=True)
+	team = models.ForeignKey(FranchiseTeam, db_column='lahman_id')
 	games = models.IntegerField()
 	plate_appearances = models.IntegerField()
 	at_bats = models.IntegerField()
@@ -131,10 +131,14 @@ class Franchise(models.Model):
 	active = models.CharField(max_length=3)
 	national_association = models.CharField(max_length=3)
 
+class FranchiseTeam(models.Model):
+	franchise_id = models.ForeignKey(Franchise)
+	lahman_id = models.CharField(max_length=3, unique=True)
 
 class Team(models.Model):
 	team_id = models.AutoField(primary_key=True)
 	franchise_id = models.ForeignKey(Franchise)
+	to_unique_id = models.ForeignKey(FranchiseTeam, db_column="team_id")
 	retro_id = models.CharField(max_length=5)
 	lahman_id = models.CharField(max_length=5)
 
@@ -152,6 +156,7 @@ class Team(models.Model):
 	loc_state = models.CharField(max_length=20)
 
 class TeamSeason(models.Model):
+	to_unique_id = models.ForeignKey(Franchise, db_column="team_id")
 	year = models.IntegerField()
 	games = models.IntegerField()
 	wins = models.IntegerField()
