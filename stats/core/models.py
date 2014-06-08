@@ -1,6 +1,16 @@
 from django.db import models
 
 # Create your models here.
+class Franchise(models.Model):
+	franchise_id = models.CharField(primary_key=True, max_length=3)
+	franchise_name = models.CharField(max_length=40)
+	active = models.CharField(max_length=3)
+	national_association = models.CharField(max_length=3)
+
+class FranchiseTeam(models.Model):
+	franchise_id = models.ForeignKey(Franchise)
+	lahman_id = models.CharField(max_length=3, unique=True)
+
 class Player(models.Model):
 
 	player_id = models.AutoField(primary_key=True)
@@ -124,16 +134,6 @@ class BatterSeason(models.Model):
 	# owar = models.DecimalField(max_digits=2, decimal_places=1)
 	# dwar = models.DecimalField(max_digits=2, decimal_places=1)
 	# orar = models.DecimalField(max_digits=2, decimal_places=1)
-
-class Franchise(models.Model):
-	franchise_id = models.CharField(primary_key=True, max_length=3)
-	franchise_name = models.CharField(max_length=40)
-	active = models.CharField(max_length=3)
-	national_association = models.CharField(max_length=3)
-
-class FranchiseTeam(models.Model):
-	franchise_id = models.ForeignKey(Franchise)
-	lahman_id = models.CharField(max_length=3, unique=True)
 
 class Team(models.Model):
 	team_id = models.AutoField(primary_key=True)
