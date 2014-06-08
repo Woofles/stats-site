@@ -178,7 +178,7 @@ class TeamSeason(models.Model):
 	ra = models.IntegerField()
 	
 	earned_runs = models.IntegerField()
-	era = models.DecimalField()
+	era = models.DecimalField(max_digits=4, decimal_places=2)
 	complete_games = models.IntegerField()
 	shutouts = models.IntegerField()
 	saves = models.IntegerField()
@@ -190,7 +190,7 @@ class TeamSeason(models.Model):
 
 	errors = models.IntegerField()
 	double_plays = models.IntegerField()
-	fielding_percentage = models.DecimalField()
+	fielding_percentage = models.DecimalField(max_digits=3, decimal_places=3)
 
 	park = models.CharField(max_length=40)
 	attendance = models.IntegerField()
