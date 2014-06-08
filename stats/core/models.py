@@ -9,7 +9,7 @@ class Franchise(models.Model):
 
 class FranchiseTeam(models.Model):
 	franchise_id = models.ForeignKey(Franchise)
-	lahman_id = models.CharField(max_length=3, unique=True)
+	lahman_fid = models.CharField(max_length=3, unique=True)
 
 class Player(models.Model):
 
@@ -31,7 +31,7 @@ class Player(models.Model):
 	mlb_id = models.CharField(max_length=12)
 	retro_id = models.CharField(max_length=12)
 	bbref_id = models.CharField(max_length=12)
-	lahman_id = models.CharField(max_length=12, unique=True)
+	lahman_pid = models.CharField(max_length=12, unique=True)
 
 	birth_year = models.IntegerField()
 	birth_month = models.IntegerField()
@@ -50,9 +50,9 @@ class Player(models.Model):
 
 class BatterSeason(models.Model):
 	batter_season_id = models.AutoField(primary_key=True)
-	player_id = models.ForeignKey(Player, db_column='lahman_id')
+	player_id = models.ForeignKey(Player, db_column='lahman_pid')
 	season = models.IntegerField()
-	team = models.ForeignKey(FranchiseTeam, db_column='lahman_id')
+	team = models.ForeignKey(FranchiseTeam, db_column='lahman_fid')
 	games = models.IntegerField()
 	plate_appearances = models.IntegerField()
 	at_bats = models.IntegerField()
@@ -138,9 +138,9 @@ class BatterSeason(models.Model):
 class Team(models.Model):
 	team_id = models.AutoField(primary_key=True)
 	franchise_id = models.ForeignKey(Franchise)
-	to_unique_id = models.ForeignKey(FranchiseTeam, db_column="team_id")
+	to_unique_id = models.ForeignKey(FranchiseTeam, db_column="lahman_fid")
 	retro_id = models.CharField(max_length=5)
-	lahman_id = models.CharField(max_length=5)
+	lahman_tid = models.CharField(max_length=5)
 
 	lg_id = models.CharField(max_length=3)
 	dv_id = models.CharField(max_length=3)
@@ -156,7 +156,7 @@ class Team(models.Model):
 	loc_state = models.CharField(max_length=20)
 
 class TeamSeason(models.Model):
-	to_unique_id = models.ForeignKey(FranchiseTeam, db_column="team_id")
+	to_unique_id = models.ForeignKey(FranchiseTeam, db_column="lahman_fid")
 	year = models.IntegerField()
 	games = models.IntegerField()
 	wins = models.IntegerField()
