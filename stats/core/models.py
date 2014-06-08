@@ -156,7 +156,7 @@ class Team(models.Model):
 	loc_state = models.CharField(max_length=20)
 
 class TeamSeason(models.Model):
-	to_unique_id = models.ForeignKey(Franchise, db_column="team_id")
+	to_unique_id = models.ForeignKey(FranchiseTeam, db_column="team_id")
 	year = models.IntegerField()
 	games = models.IntegerField()
 	wins = models.IntegerField()
