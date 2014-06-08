@@ -125,8 +125,17 @@ class BatterSeason(models.Model):
 	# dwar = models.DecimalField(max_digits=2, decimal_places=1)
 	# orar = models.DecimalField(max_digits=2, decimal_places=1)
 
+class Franchise(models.Model):
+	franchise_id = models.CharField(primary_key=True, max_length=3)
+	franchise_name = models.CharField(max_length=40)
+	active = models.CharField(max_length=3)
+	national_association = models.CharField(max_length=3)
+
+
 class Team(models.Model):
-	retro_id = models.CharField(primary_key=True,max_length=5)
+	team_id = models.AutoField(primary_key=True)
+	franchise_id = models.ForeignKey(Franchise)
+	retro_id = models.CharField(max_length=5)
 	lahman_id = models.CharField(max_length=5)
 
 	lg_id = models.CharField(max_length=3)
