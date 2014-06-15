@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from core.forms import QueryForm
 from core.models import Player
+from core.parser import parse_input
 
 def index(request):
     context = {}
@@ -9,12 +10,11 @@ def index(request):
         form = QueryForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            name = cd['query'].split()
-            player = Player.objects.get(first_name=name[0], last_name=name[1])
-
+            
+            stuff = parse_input(cd['query'])
         #DO QUERY STUFF HERE
 
-        context = { 'form': form, 'player': player } #add return data here
+        context = { 'form': form, 'data': stuff } #add return data here
     else:
         form = QueryForm()
         context = { 'form': form, }
